@@ -37,4 +37,18 @@
   margin: 0 auto;
 }
 
+/* Game Info */
+
+ol, u{
+  padding-left: 30px;
+}
+
+.game-info{
+  margin-left: 20px;
+}
+
+.status{
+  margin-bottom: 10px;
+}
+
 .game-board{}
