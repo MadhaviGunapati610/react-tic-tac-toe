@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Board from './Board'
+import Square from './Square';
 
 export default class Game extends Component {
     constructor(props){
@@ -17,6 +18,13 @@ export default class Game extends Component {
         const history = this.state.history.slice(0,this.state.stepNumber+1); // gets the last step number
         const current = history[history.length -1]; //shows the last step we took
         const squares = current.squares.slice();
+        const winner = calculateWinner(squares);
+
+        //if there is a winner, no one can change positions
+        if(winner || squares[i]){
+          return;
+        };
+
         squares[i] = this.state.xisNext?'X':'O'; //check who is next playing
         this.setState({
           history: history.concat({
@@ -42,3 +50,29 @@ export default class Game extends Component {
     )
   }
 }
+function calculateWinner(squares){
+
+  const lines = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];
+
+  //checks the matrix rows for a winner
+  for(let i=0; i<lines.length;i++){
+    const [a,b,c] = lines[i];
+    
+    if(squares[a] && squares[a] === squares[b] && squares[b] === squares[c]){
+      return squares[a];
+    }
+  }
+
+  return null;
+
+}
+
