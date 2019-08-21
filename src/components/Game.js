@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Board from './Board'
-import Square from './Square';
 
 export default class Game extends Component {
     constructor(props){
