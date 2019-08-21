@@ -17,6 +17,16 @@ export default class Game extends Component {
         const history = this.state.history.slice(0,this.state.stepNumber+1); // gets the last step number
         const current = history[history.length -1]; //shows the last step we took
         const squares = current.squares.slice();
+        squares[i] = this.state.xisNext?'X':'O'; //check who is next playing
+        this.setState({
+          history: history.concat({
+            squares: squares
+          }), //tracks the players turns
+
+        xisNext: !this.state.xisNext,
+        stepNumber: history.length
+        });
+        
     }
 
   render() {
